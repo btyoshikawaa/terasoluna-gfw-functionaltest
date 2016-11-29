@@ -189,7 +189,6 @@
 				<artifactId>terasoluna-gfw-functionaltest-env</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-
 			<!-- == Begin Test == -->
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
@@ -197,40 +196,40 @@
 				<version>${selenium.version}</version>
 			</dependency>
 			<dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-api</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-chrome-driver</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-firefox-driver</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-ie-driver</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-remote-driver</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-safari-driver</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-support</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-api</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-chrome-driver</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-firefox-driver</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-ie-driver</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-remote-driver</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-safari-driver</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-support</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
 			<!-- == End Test == -->
 
 			<!-- == Begin Database == -->
@@ -264,8 +263,10 @@
 		<com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
 		<org.codehaus.cargo.cargo-maven2-plugin.version>1.4.16</org.codehaus.cargo.cargo-maven2-plugin.version>
 		<!-- == Dependency Versions == -->
+		<org.mybatis.version>3.4.1</org.mybatis.version>
+		<org.mybatis.spring.version>1.3.0</org.mybatis.spring.version>		
 		<jadira-usertype-core.version>5.0.0.GA</jadira-usertype-core.version>
-<!-- 		<io.spring.platform.version>Athens-RELEASE</io.spring.platform.version> -->
+		<io.spring.platform.version>Athens-SR1</io.spring.platform.version>
 		<postgresql.version>9.4-1206-jdbc41</postgresql.version>
 		<ojdbc7.version>12.1.0.2</ojdbc7.version>
 		<db2jcc4.version>4.19.26</db2jcc4.version>
@@ -277,7 +278,8 @@
 		<encoding>UTF-8</encoding>
 		<java-version>1.7</java-version>
 		<cargo.jvmargs>-Xms512m -Xmx1024m -Duser.language=ja
-			-Duser.country=JP -Duser.timezone=Asia/Tokyo</cargo.jvmargs>
+			-Duser.country=JP
+			-Duser.timezone=Asia/Tokyo</cargo.jvmargs>
 	</properties>
 	<profiles>
 		<profile>

@@ -29,6 +29,8 @@ import org.junit.rules.TestName;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,6 +45,11 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
     protected static WebDriver driver;
 
     private static final Set<WebDriver> webDrivers = new HashSet<WebDriver>();
+    
+    protected static Wait<WebDriver> wait;
+
+    @Value("${selenium.waitInSecond}")
+    protected int waitInSecond;
 
     @Value("${selenium.serverUrl}")
     protected String serverUrl;
@@ -163,6 +170,7 @@ public class FunctionTestSupport extends ApplicationObjectSupport {
     protected void bootDefaultWebDriver() {
         if (driver == null) {
             driver = newWebDriver();
+            wait = new WebDriverWait(driver, waitInSecond);
         }
         driver.manage().timeouts().implicitlyWait(
                 defaultTimeoutSecForImplicitlyWait, TimeUnit.SECONDS);

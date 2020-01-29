@@ -14,6 +14,8 @@
   <import resource="classpath:META-INF/spring/terasoluna-gfw-functionaltest-infra.xml" />
   <import resource="classpath*:META-INF/spring/**/*-codelist.xml" />
   <context:component-scan base-package="org.terasoluna.gfw.functionaltest.domain" />
+
+  <!-- DateFactory. -->
   <bean id="dateFactory" class="org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory" />
 
   <bean id="jdbcFixedDateFactory" class="org.terasoluna.gfw.common.date.jodatime.JdbcFixedJodaTimeDateFactory">
@@ -74,6 +76,53 @@
       value="SELECT diff * 24 * 60 * 60 * 1000 FROM operation_date where operation_date_id='2'" />
   </bean>
 
+  <!-- ClockFactory. -->
+  <bean id="clockFactory" class="org.terasoluna.gfw.common.time.DefaultClockFactory" />
+
+  <bean id="jdbcClockFactory" class="org.terasoluna.gfw.common.time.JdbcClockFactory">
+    <constructor-arg name="dataSource" ref="dataSource" />
+    <constructor-arg name="currentTimestampQuery" value="SELECT now FROM system_date where system_date_id='1'" />
+  </bean>
+
+  <bean id="dbErrorJdbcClockFactory" class="org.terasoluna.gfw.common.time.JdbcClockFactory">
+    <constructor-arg name="dataSource" ref="dataSource" />
+    <constructor-arg name="currentTimestampQuery" value="SELECT now FROM system_date where system_date_id='2'" />
+  </bean>
+
+  <bean id="jdbcAdjustClockFactory" class="org.terasoluna.gfw.common.time.JdbcAdjustClockFactory">
+    <constructor-arg name="dataSource" ref="dataSource" />
+    <constructor-arg name="adjustedValueQuery" value="SELECT diff FROM operation_date where operation_date_id='1'" />
+    <constructor-arg name="adjustedValueUnit">
+      <bean class="java.time.temporal.ChronoUnit" factory-method="valueOf">
+        <constructor-arg name="name" value="MILLIS" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="dbErrorJdbcAdjustClockFactory" class="org.terasoluna.gfw.common.time.JdbcAdjustClockFactory">
+    <constructor-arg name="dataSource" ref="dataSource" />
+    <constructor-arg name="adjustedValueQuery" value="SELECT diff FROM operation_date where operation_date_id='2'" />
+    <constructor-arg name="adjustedValueUnit">
+      <bean class="java.time.temporal.ChronoUnit" factory-method="valueOf">
+        <constructor-arg name="name" value="MILLIS" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="configurableClockFactory" class="org.terasoluna.gfw.common.time.ConfigurableClockFactory">
+    <constructor-arg name="localDateTimeString" value="2012-09-11T02:25:15" />
+  </bean>
+
+  <bean id="configurableAdjustClockFactory" class="org.terasoluna.gfw.common.time.ConfigurableAdjustClockFactory">
+    <constructor-arg name="adjustedValue" value="30" />
+    <constructor-arg name="adjustedValueUnit">
+      <bean class="java.time.temporal.ChronoUnit" factory-method="valueOf">
+        <constructor-arg name="name" value="DAYS" />
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <!-- Method Validation. -->
   <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
   <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
